@@ -1,4 +1,5 @@
-import { Outlet, RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
+import { NavLink, RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
+import DashboardLayout from './layouts/DashboardLayout';
 
 export default function App() {
   return <RouterProvider router={router} />;
@@ -7,12 +8,21 @@ export default function App() {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <h1>please log in</h1>,
+    element: (
+      <div className='flex justify-center mt-32'>
+        <h1>please log in</h1>
+        <NavLink
+          className='bg-red-400'
+          to='/dashboard'>
+          LogIn
+        </NavLink>
+      </div>
+    ),
     errorElement: <ErrorBoundary />,
   },
   {
     path: 'dashboard',
-    element: <Outlet />,
+    element: <DashboardLayout />,
     children: [
       {
         path: '',
