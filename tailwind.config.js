@@ -24,6 +24,9 @@ export default {
         purple: '#D1B2FF',
         'purple-light': '#EFD7FF',
       },
+      letterSpacing: {
+        title: '1rem',
+      },
     },
   },
   plugins: [],

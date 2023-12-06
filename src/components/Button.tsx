@@ -1,6 +1,6 @@
 interface ButtonProps {
   text: string;
-  onClick: () => void | Promise<void> | Promise<unknown>;
+  onClick: () => unknown;
   color?: 'pink' | 'yellow' | 'green' | 'blue' | 'purple';
   rounded?: boolean;
   className?: string;

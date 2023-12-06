@@ -1,5 +1,6 @@
 import useGoogleOAuth from '../../hooks/useGoogleOAuth';
-import ProfilePicture from '../../components/ProfilePicture';
+import Button from '../../components/Button';
+import NavProfile from './components/NavProfile';
 
 export default function RootNavigation() {
   const { login, logout, loggedInUser } = useGoogleOAuth();
@@ -7,25 +8,31 @@ export default function RootNavigation() {
   return (
     <>
       <nav className={`sticky top-0 z-50 flex items-center justify-between w-full h-24 px-16 bg-gray-900 text-white`}>
-        <h1 className='tracking-widest'>DEADLINE</h1>
+        <div>
+          <h1>v0.1</h1>
+        </div>
+
         <div>
           {loggedInUser && (
-            <div className='flex items-center'>
-              <h1>{`${loggedInUser.given_name} ${loggedInUser.family_name}`}</h1>
-              <ProfilePicture
-                src={loggedInUser.picture}
-                className='p-1 ml-2 border-2 border-white rounded-full'
+            <>
+              <NavProfile
+                user={loggedInUser}
+                onLogout={logout}
               />
-              <button onClick={() => logout()}>Logout</button>
-            </div>
+            </>
           )}
 
           {!loggedInUser && (
             <>
-              <button onClick={() => login()}>Login</button>
+              <Button
+                onClick={login}
+                text='LogIn'
+              />
             </>
           )}
         </div>
+
+        <h1 className='flex items-center justify-center absolute right-1/2 translate-x-1/2 tracking-title'>DEADLINE</h1>
       </nav>
     </>
   );
