@@ -1,8 +1,14 @@
 import { NavLink, RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+const clientId = '228978164571-bos57od5bbngnosaor9oahtgk425c0tg.apps.googleusercontent.com';
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <GoogleOAuthProvider clientId={clientId}>
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
+  );
 }
 
 const router = createBrowserRouter([
