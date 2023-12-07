@@ -3,6 +3,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 import RootLayout from './layouts/RootLayout';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import Dashboard from './modules/dashboard/Dashboard';
+import Landing from './modules/landing/Landing';
 
 export const routes = [
   {
@@ -16,7 +17,7 @@ export const routes = [
         id: 'root-root',
         element: (
           <NavLink to='dashboard'>
-            <h1 className='text-white'>GO TO DASHBOARD</h1>
+            <Landing />
           </NavLink>
         ),
       },
