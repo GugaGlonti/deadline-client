@@ -17,7 +17,8 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
       className={`relative
       bg-gray-800 py-1 px-4 rounded-md
       hover:bg-gray-700`}
-      onClick={() => setIsDropdownOpen(prev => !prev)}
+      onMouseEnter={() => setIsDropdownOpen(prev => !prev)}
+      onClick={() => setIsDropdownOpen(false)}
       {...props}>
       <div className='flex items-center'>
         <h1>{`${user.given_name} ${user.family_name}`}</h1>
@@ -28,7 +29,7 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
       </div>
       {!!isDropdownOpen && (
         <div
-          className={`absolute p-2 bg-gray-800 right-0
+          className={`absolute p-2 bg-gray-800 right-0 rounded-md 
           flex flex-col divide-y`}>
           <div className='px-4 py-3'>
             <span className='block text-sm  text-gray-500 truncate dark:text-gray-400'>{user.email}</span>
