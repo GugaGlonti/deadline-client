@@ -1,11 +1,13 @@
 interface CardProps {
   title: string;
   subject: string;
+  priority?: number;
+  iteration?: [number, number];
   description?: string;
   color?: 'gray' | 'red' | 'green' | 'blue' | 'yellow';
 }
 
-export default function Card({ title, subject, description, color = 'gray' }: CardProps) {
+export default function Card({ title, subject, description, color = 'gray', priority, iteration }: CardProps) {
   const progressPercentage = Math.trunc(Math.random() * 100);
 
   return (
@@ -17,8 +19,12 @@ export default function Card({ title, subject, description, color = 'gray' }: Ca
         ${color === 'green' && 'bg-emerald-300'}
         ${color === 'blue' && 'bg-blue'}
         ${color === 'yellow' && 'bg-yellow'}
-        `}
-      />
+        `}>
+        <div className='flex justify-between pt-4 px-8'>
+          {!!priority && <h1>{priority}</h1>}
+          {!!iteration && <h1>{`( ${iteration[0]} / ${iteration[1]} )`}</h1>}
+        </div>
+      </div>
 
       <div className='h-1 w-full bg-gray-300'>
         <div
