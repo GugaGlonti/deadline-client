@@ -12,7 +12,7 @@ export default function DashboardNav() {
     <aside
       className={`
       transition-all duration-200
-      h-screen bg-gray-100
+      h-80hv bg-gray-100
       ${isMenuOpen ? 'w-1/4' : 'w-24'}
       `}>
       <div onClick={() => setIsMenuOpen(prev => !prev)}>
