@@ -27,7 +27,7 @@ export default function RootNavigation() {
             <>
               <Button
                 onClick={login}
-                text='LogIn'
+                text='Login'
               />
             </>
           )}
