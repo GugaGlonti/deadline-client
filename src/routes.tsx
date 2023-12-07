@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 import RootLayout from './layouts/RootLayout';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -15,11 +14,7 @@ export const routes = [
       {
         path: '',
         id: 'root-root',
-        element: (
-          <NavLink to='dashboard'>
-            <Landing />
-          </NavLink>
-        ),
+        element: <Landing />,
       },
       {
         path: 'dashboard',
