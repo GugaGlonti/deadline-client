@@ -1,6 +1,7 @@
 import useGoogleOAuth from '../../hooks/useGoogleOAuth';
 import Button from '../../components/Button';
 import NavProfile from './components/NavProfile';
+import { NavLink } from 'react-router-dom';
 
 export default function RootNavigation() {
   const { login, logout, loggedInUser } = useGoogleOAuth();
@@ -32,7 +33,11 @@ export default function RootNavigation() {
           )}
         </div>
 
-        <h1 className='flex items-center justify-center absolute right-1/2 translate-x-1/2 tracking-title'>DEADLINE</h1>
+        <NavLink
+          to='/'
+          className='flex items-center justify-center absolute right-1/2 translate-x-1/2 tracking-title'>
+          <h1>DEADLINE</h1>
+        </NavLink>
       </nav>
     </>
   );
