@@ -12,19 +12,22 @@ export default function DashdoardNavItem({ label, to, icon: Icon, open, ...props
   const baseClasses = `
   flex justify-start items-center
   rounded-r-full
-  h-24
+  
+
+  w-20
+  h-20
+  
   ${
     !open &&
     `
     rounded-full
     m-2
-    w-20
-    h-20
     `
   }
   ${
-    !!open &&
+    open &&
     `
+    my-2
     px-6
     gap-6
     w-5/6
