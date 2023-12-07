@@ -26,6 +26,21 @@ export const routes = [
             id: 'dashboard-root',
             element: <Dashboard />,
           },
+          {
+            path: 'main',
+            id: 'dashboard-main',
+            element: <Dashboard />,
+          },
+          {
+            path: 'past',
+            id: 'dashboard-past',
+            element: <Dashboard />,
+          },
+          {
+            path: 'completed',
+            id: 'dashboard-completed',
+            element: <Dashboard />,
+          },
         ],
       },
       {
