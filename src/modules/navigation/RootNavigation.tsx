@@ -1,10 +1,11 @@
-import useGoogleOAuth from '../../hooks/useGoogleOAuth';
 import Button from '../../components/Button';
 import NavProfile from './components/NavProfile';
 import { NavLink } from 'react-router-dom';
 
 export default function RootNavigation() {
-  const { login, logout, loggedInUser } = useGoogleOAuth();
+  const { loggedInUser, login, logout } =
+    //placeholder
+    { loggedInUser: null, login: () => {}, logout: () => {} };
 
   return (
     <>

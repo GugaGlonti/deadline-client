@@ -13,7 +13,7 @@ export default function Card({ title, subject, description, color = 'gray', prio
   return (
     <div className='rounded-md w-96'>
       <div
-        className={`h-20 rounded-t-m
+        className={`h-32 rounded-t-m
         ${color === 'gray' && 'bg-gray-300'}
         ${color === 'red' && 'bg-red-300'}
         ${color === 'green' && 'bg-emerald-300'}
