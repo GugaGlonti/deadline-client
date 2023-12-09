@@ -1,10 +1,11 @@
+import { useState } from 'react';
+
+import DashdoardNavItem from './components/DashdoardNavItem';
+
 import { IoMenu } from 'react-icons/io5';
 import { LuListTodo } from 'react-icons/lu';
 import { MdTaskAlt } from 'react-icons/md';
 import { IoCalendarNumberOutline } from 'react-icons/io5';
-
-import { useState } from 'react';
-import DashdoardNavItem from './components/DashdoardNavItem';
 
 export default function DashboardNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

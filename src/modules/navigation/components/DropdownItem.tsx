@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 interface DropdownItemProps {
   text: string;
 }
-export function DropdownItem({ text, ...props }: DropdownItemProps) {
+export default function DropdownItem({ text, ...props }: DropdownItemProps) {
   return (
     <li {...props}>
       <NavLink

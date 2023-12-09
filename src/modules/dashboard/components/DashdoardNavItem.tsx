@@ -1,5 +1,6 @@
-import { IconType } from 'react-icons';
 import { NavLink } from 'react-router-dom';
+
+import { IconType } from 'react-icons';
 
 interface DashdoardNavItemProps {
   label: string;

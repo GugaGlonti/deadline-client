@@ -1,8 +1,10 @@
 import { useState } from 'react';
+
+import { User } from 'firebase/auth';
+
+import DropdownItem from './DropdownItem';
 import ProfilePicture from '../../../components/ProfilePicture';
 import Button from '../../../components/Button';
-import { DropdownItem } from './DropdownItem';
-import { User } from 'firebase/auth';
 
 interface NavProfileProps {
   user: User;
