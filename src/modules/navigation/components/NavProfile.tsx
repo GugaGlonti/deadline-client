@@ -14,13 +14,21 @@ interface NavProfileProps {
 export default function NavProfile({ user, onLogout: logout, ...props }: NavProfileProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  function toggleDropdown() {
+    setIsDropdownOpen(prev => !prev);
+  }
+
+  function closeDropdown() {
+    setIsDropdownOpen(false);
+  }
+
   return (
     <div
       className={`relative
       bg-gray-800 py-1 px-4 rounded-md
       hover:bg-gray-700`}
-      onMouseEnter={() => setIsDropdownOpen(prev => !prev)}
-      onClick={() => setIsDropdownOpen(false)}
+      onClick={toggleDropdown}
+      onMouseLeave={closeDropdown}
       {...props}>
       <div className='flex items-center'>
         <h1>{`${user.displayName}`}</h1>
@@ -44,6 +52,7 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
             <DropdownItem text='About' />
           </ul>
           <Button
+            className='w-32'
             onClick={() => logout()}
             text='Sign Out'
           />
