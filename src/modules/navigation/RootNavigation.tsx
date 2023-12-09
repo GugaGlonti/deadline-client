@@ -1,11 +1,17 @@
 import Button from '../../components/Button';
+import DEADLINE from '../../components/DEADLINE';
+import { AuthService } from '../../services/auth.service';
 import NavProfile from './components/NavProfile';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function RootNavigation() {
-  const { loggedInUser, login, logout } =
-    //placeholder
-    { loggedInUser: null, login: () => {}, logout: () => {} };
+  const navigate = useNavigate();
+  const loggedInUser = AuthService.getUser();
+
+  function handleLogout() {
+    AuthService.logout();
+    window.location.reload();
+  }
 
   return (
     <>
@@ -15,11 +21,11 @@ export default function RootNavigation() {
         </div>
 
         <div>
-          {loggedInUser && (
+          {!!loggedInUser && (
             <>
               <NavProfile
                 user={loggedInUser}
-                onLogout={logout}
+                onLogout={handleLogout}
               />
             </>
           )}
@@ -27,8 +33,8 @@ export default function RootNavigation() {
           {!loggedInUser && (
             <>
               <Button
-                onClick={login}
-                text='Login'
+                onClick={() => navigate('/auth')}
+                text='Sign In'
               />
             </>
           )}
@@ -37,7 +43,7 @@ export default function RootNavigation() {
         <NavLink
           to='/'
           className='flex items-center justify-center absolute right-1/2 translate-x-1/2 tracking-title'>
-          <h1>DEADLINE</h1>
+          <DEADLINE />
         </NavLink>
       </nav>
     </>

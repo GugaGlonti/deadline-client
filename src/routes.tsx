@@ -3,6 +3,7 @@ import RootLayout from './layouts/RootLayout';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import Dashboard from './modules/dashboard/Dashboard';
 import Landing from './modules/landing/Landing';
+import AuthPage from './modules/auth/AuthPage';
 
 export const routes = [
   {
@@ -53,11 +54,16 @@ export const routes = [
         id: 'about',
         element: <h1 className='text-center text-white'>about</h1>,
       },
-      {
-        path: '*',
-        id: 'not-found',
-        element: <h1 className='text-center text-white'>404</h1>,
-      },
     ],
+  },
+  {
+    path: 'auth',
+    id: 'auth',
+    element: <AuthPage />,
+  },
+  {
+    path: '*',
+    id: 'not-found',
+    element: <h1 className='text-center text-white text-9xl'>ROUTE IS NOT DEFINED</h1>,
   },
 ];

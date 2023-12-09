@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import ProfilePicture from '../../../components/ProfilePicture';
-import { GoogleUser } from '../../../types/User';
 import Button from '../../../components/Button';
 import { DropdownItem } from './DropdownItem';
+import { User } from 'firebase/auth';
 
 interface NavProfileProps {
-  user: GoogleUser;
+  user: User;
   onLogout: () => void;
 }
 
@@ -21,9 +21,9 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
       onClick={() => setIsDropdownOpen(false)}
       {...props}>
       <div className='flex items-center'>
-        <h1>{`${user.given_name} ${user.family_name}`}</h1>
+        <h1>{`${user.displayName}`}</h1>
         <ProfilePicture
-          src={user.picture}
+          src={user.photoURL || ''}
           className='p-1 ml-2 border-2 border-white rounded-full'
         />
       </div>
@@ -43,7 +43,7 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
           </ul>
           <Button
             onClick={() => logout()}
-            text='Logout'
+            text='Sign Out'
           />
         </div>
       )}

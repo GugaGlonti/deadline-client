@@ -6,9 +6,10 @@ interface ButtonProps {
   color?: 'pink' | 'yellow' | 'green' | 'blue' | 'purple';
   rounded?: boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
-export default function Button({ text, onClick, color = 'pink', className = '', ...props }: ButtonProps) {
+export default function Button({ text, onClick, color = 'pink', className = '', children, ...props }: ButtonProps) {
   return (
     <button
       className={`py-2 px-4 border-b-4 rounded-md align-middle
@@ -21,8 +22,9 @@ export default function Button({ text, onClick, color = 'pink', className = '', 
       onClick={onClick}
       {...props}>
       {text}
-      {text === 'Logout' && <SlLogout className='inline-block ml-2' />}
-      {text === 'Login' && <SlLogin className='inline-block ml-2' />}
+      {text === 'Sign In' && <SlLogout className='inline-block ml-2' />}
+      {text === 'Sign Out' && <SlLogin className='inline-block ml-2' />}
+      {children}
     </button>
   );
 }
