@@ -1,13 +1,13 @@
-import { githubAuthProvider, googleAuthProvider } from './../config/firebase.config';
-import { User, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, updateEmail, updatePassword, signInWithPopup, signOut } from 'firebase/auth';
-import { auth } from '../config/firebase.config';
+import { User, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, updateEmail, updatePassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { auth, githubAuthProvider, googleAuthProvider } from './../config/firebase.config';
 
 export class AuthService {
-  public static async signinWithEmailAndPassword(email: string, password: string): Promise<void> {
+  public static async signupWithEmailAndPassword(email: string, password: string, username: string): Promise<void> {
     await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(auth.currentUser!, { displayName: username });
   }
 
-  public static async loginWithEmailAndPassword(email: string, password: string): Promise<void> {
+  public static async signinWithEmailAndPassword(email: string, password: string): Promise<void> {
     await signInWithEmailAndPassword(auth, email, password);
   }
 
