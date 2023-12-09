@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
 import { IconType } from 'react-icons';
-
 interface DashdoardNavItemProps {
   label: string;
   to: string;
@@ -12,25 +11,22 @@ interface DashdoardNavItemProps {
 export default function DashdoardNavItem({ label, to, icon: Icon, open, ...props }: DashdoardNavItemProps) {
   const baseClasses = `
   flex justify-start items-center
-  rounded-r-full
-  
-
-  w-20
+  relative
+  m-2
+  transition-all duration-150
   h-20
   
   ${
     !open &&
     `
     rounded-full
-    m-2
+    w-20
     `
   }
   ${
     open &&
     `
-    my-2
-    px-6
-    gap-6
+    rounded-r-full
     w-5/6
     `
   }
@@ -40,12 +36,17 @@ export default function DashdoardNavItem({ label, to, icon: Icon, open, ...props
     <NavLink
       to={to}
       // prettier-ignore
-      className={({ isActive }) => (isActive
-        ? `${baseClasses} bg-yellow text-white hover:bg-yellow`
-        : `${baseClasses} hover:bg-gray-200 hover:text-white`)}
+      className={({ isActive }) => {
+        return (isActive
+          ? `${baseClasses} bg-yellow text-white hover:bg-yellow hover:text-white`
+          : `${baseClasses} hover:bg-gray-200 hover:text-white`)
+      }}
       {...props}>
-      <Icon className='w-16 h-16 m-auto' />
-      {open && <h1 className='text-md font-bold w-full'>{label}</h1>}
+      {!!open && <div className='absolute left-0 w-1 h-20 bg-yellow' />}
+      <div className='h-20'>
+        <Icon className='p-6 w-20 h-20 absolute left-0' />
+      </div>
+      {open && <h1 className='ml-24 text-md font-bold w-full'>{label}</h1>}
     </NavLink>
   );
 }

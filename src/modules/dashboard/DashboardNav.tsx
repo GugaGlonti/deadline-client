@@ -12,14 +12,15 @@ export default function DashboardNav() {
   return (
     <aside
       className={`
-      transition-all duration-200
+      transition-all duration-150
       h-80hv bg-gray-100
       ${isMenuOpen ? 'w-1/4' : 'w-24'}
       `}>
       <div onClick={() => setIsMenuOpen(prev => !prev)}>
         <IoMenu
           className={`
-          p-4 w-24 h-24
+          m-2
+          p-6 w-20 h-20
           `}
         />
       </div>
