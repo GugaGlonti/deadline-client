@@ -2,9 +2,8 @@ import { useState } from 'react';
 
 import { User } from 'firebase/auth';
 
-import DropdownItem from './DropdownItem';
 import ProfilePicture from '../../../components/ProfilePicture';
-import Button from '../../../components/Button';
+import Dropdown from './Dropdown';
 
 interface NavProfileProps {
   user: User;
@@ -14,13 +13,8 @@ interface NavProfileProps {
 export default function NavProfile({ user, onLogout: logout, ...props }: NavProfileProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  function toggleDropdown() {
-    setIsDropdownOpen(prev => !prev);
-  }
-
-  function closeDropdown() {
-    setIsDropdownOpen(false);
-  }
+  const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
+  const closeDropdown = () => setIsDropdownOpen(false);
 
   return (
     <div
@@ -38,25 +32,10 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
         />
       </div>
       {!!isDropdownOpen && (
-        <div
-          className={`absolute p-2 bg-gray-800 right-0 rounded-md 
-          flex flex-col divide-y`}>
-          <div className='px-4 py-3'>
-            <span className='block text-sm  text-gray-500 truncate dark:text-gray-400'>{user.email}</span>
-          </div>
-          <ul
-            className='py-2'
-            aria-labelledby='user-menu-button'>
-            <DropdownItem text='Dashboard' />
-            <DropdownItem text='Settings' />
-            <DropdownItem text='About' />
-          </ul>
-          <Button
-            className='w-32'
-            onClick={() => logout()}
-            text='Sign Out'
-          />
-        </div>
+        <Dropdown
+          user={user}
+          logout={logout}
+        />
       )}
     </div>
   );
