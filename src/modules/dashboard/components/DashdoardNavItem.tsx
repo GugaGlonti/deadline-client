@@ -38,11 +38,11 @@ export default function DashdoardNavItem({ label, to, icon: Icon, open, ...props
       // prettier-ignore
       className={({ isActive }) => {
         return (isActive
-          ? `${baseClasses} bg-yellow text-white hover:bg-yellow hover:text-white`
+          ? `${baseClasses} bg-green text-white hover:bg-green hover:text-white`
           : `${baseClasses} hover:bg-gray-200 hover:text-white`)
       }}
       {...props}>
-      {!!open && <div className='absolute left-0 w-1 h-20 bg-yellow' />}
+      {!!open && <div className='absolute left-0 w-1 h-20 bg-green' />}
       <div className='h-20'>
         <Icon className='p-6 w-20 h-20 absolute left-0' />
       </div>

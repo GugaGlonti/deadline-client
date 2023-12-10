@@ -17,18 +17,14 @@ export default function Dashboard() {
 
   return (
     <div className='w-full h-fill'>
-      <div className='flex flex-col'>
-        <>
-          <div className='flex flex-wrap justify-evenly'>
-            {randomSelectionWithMultipliedAmount.map((card, index) => (
-              <div
-                key={index}
-                className='m-8'>
-                {card}
-              </div>
-            ))}
+      <div className='flex flex-wrap justify-evenly'>
+        {randomSelectionWithMultipliedAmount.map((card, index) => (
+          <div
+            key={index}
+            className='m-8'>
+            {card}
           </div>
-        </>
+        ))}
       </div>
       <AddCardModal
         open={isModalOpen}

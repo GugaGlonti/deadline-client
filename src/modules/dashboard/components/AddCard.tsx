@@ -12,14 +12,14 @@ export default function AddCard({ className, onClick, ...props }: AddCardProps) 
       className={`
       ${className}
       fixed bottom-16 right-16
-      border-4 border-yellow-light rounded-full
+      border-2 border-green-dark rounded-full
       `}
       {...props}>
       <GrAdd
         className={`
         w-20 h-20 rounded-full p-2
-        bg-yellow text-yellow-light
-        hover:bg-yellow-light hover:text-yellow
+        bg-green text-green-light
+        hover:bg-green-dark
         `}
       />
     </div>
