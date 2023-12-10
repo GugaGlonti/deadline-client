@@ -5,14 +5,20 @@ interface MultiSelectFieldProps {
   label?: string;
   options: string[];
   color?: 'pink' | 'yellow' | 'green' | 'blue' | 'purple';
-  weekDays: string[];
-  setWeekDays: React.Dispatch<React.SetStateAction<string[]>>;
+  onChange: (weekDays: string[]) => void;
 }
 
-export default function MultiSelectField({ className, label, options, weekDays, setWeekDays, color = 'green', ...props }: MultiSelectFieldProps) {
+export default function MultiSelectField({ className, label, options, onChange, color = 'green', ...props }: MultiSelectFieldProps) {
+  const [weekDays, setWeekDays] = useState<string[]>([]);
+
   function addSelected(option: string) {
-    if (!weekDays.includes(option)) return setWeekDays(prev => [...prev, option]);
-    setWeekDays(prev => prev.filter(item => item !== option));
+    if (!weekDays.includes(option)) changeHandler([...weekDays, option]);
+    else changeHandler(weekDays.filter(item => item !== option));
+  }
+
+  function changeHandler(newWeekDays: string[] = weekDays) {
+    setWeekDays(newWeekDays);
+    return onChange(newWeekDays);
   }
 
   return (
@@ -28,9 +34,9 @@ export default function MultiSelectField({ className, label, options, weekDays, 
             color={color}
             onSelected={addSelected}
             className={`
-                h-12 w-12
-                flex justify-center items-center
-                border-4 rounded-full
+              h-12 w-12
+              flex justify-center items-center
+              border-4 rounded-full
               `}
           />
         ))}

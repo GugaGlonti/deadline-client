@@ -11,9 +11,16 @@ interface AddCardModalProps {
   onClose: () => void;
 }
 
+interface Data {
+  title?: string;
+  subject?: string;
+  time?: string;
+  weekDays?: string[];
+  description?: string;
+}
+
 export default function AddCardModal({ open, onClose, className, ...props }: AddCardModalProps) {
-  const [data, setData] = useState({});
-  const [weekDays, setWeekDays] = useState<string[]>([]);
+  const [data, setData] = useState<Data>({});
 
   if (!open) return null;
 
@@ -23,10 +30,15 @@ export default function AddCardModal({ open, onClose, className, ...props }: Add
   function submitHandler() {
     console.log({
       ...data,
-      weekDays,
     });
     onClose();
   }
+
+  function setWeekDays(weekDays: string[]) {
+    setData(prev => ({ ...prev, weekDays }));
+  }
+
+  console.log('data', data.weekDays);
 
   return (
     <>
@@ -64,8 +76,7 @@ export default function AddCardModal({ open, onClose, className, ...props }: Add
                   />
                   <MultiSelectField
                     options={['Mo', 'Tu', 'We', 'Th', 'Fr', 'Ss', 'Su']}
-                    weekDays={weekDays}
-                    setWeekDays={setWeekDays}
+                    onChange={setWeekDays}
                   />
                 </div>
               </div>
