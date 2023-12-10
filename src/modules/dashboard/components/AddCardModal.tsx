@@ -1,9 +1,10 @@
+import { useState } from 'react';
+
 import { RxCross2 } from 'react-icons/rx';
 
 import InputField from '../../../components/InputField';
 import MultiSelectField from '../../../components/MultiSelectField';
 import Button from '../../../components/Button';
-import { useState } from 'react';
 
 interface AddCardModalProps {
   className?: string;

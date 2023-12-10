@@ -9,15 +9,15 @@ interface MultiSelectFieldProps {
 }
 
 export default function MultiSelectField({ className, label, options, onChange, color = 'green', ...props }: MultiSelectFieldProps) {
-  const [weekDays, setWeekDays] = useState<string[]>([]);
+  const [values, setValues] = useState<string[]>([]);
 
   function addSelected(option: string) {
-    if (!weekDays.includes(option)) changeHandler([...weekDays, option]);
-    else changeHandler(weekDays.filter(item => item !== option));
+    if (!values.includes(option)) changeHandler([...values, option]);
+    else changeHandler(values.filter(item => item !== option));
   }
 
-  function changeHandler(newWeekDays: string[] = weekDays) {
-    setWeekDays(newWeekDays);
+  function changeHandler(newWeekDays: string[] = values) {
+    setValues(newWeekDays);
     return onChange(newWeekDays);
   }
 
