@@ -9,7 +9,7 @@ interface ButtonProps {
   children?: React.ReactNode;
 }
 
-export default function Button({ text, onClick, color = 'pink', className = '', children, ...props }: ButtonProps) {
+export default function Button({ text, onClick, color = 'green', className = '', children, ...props }: ButtonProps) {
   return (
     <button
       className={`py-2 px-4 border-b-4 rounded-md align-middle

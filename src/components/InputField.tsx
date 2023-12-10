@@ -1,5 +1,5 @@
 interface InputFieldProps {
-  label: string;
+  label?: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time' | 'datetime-local' | 'month' | 'week' | 'tel' | 'url' | 'search';
   name?: string;
   autoComplete?: string;
@@ -10,15 +10,17 @@ interface InputFieldProps {
   onChange?: (value: string) => void;
   className?: string;
   color?: 'pink' | 'yellow' | 'green' | 'blue' | 'purple';
+  fit?: boolean;
 }
 
-export default function InputField({ label, type = 'text', name = '', id = '', autoComplete = '', placeholder = '', required = false, value, onChange = () => {}, className = '', color = 'pink', ...props }: InputFieldProps) {
+export default function InputField({ label, type = 'text', name = '', id = '', autoComplete = '', placeholder = '', required = false, value, onChange = () => {}, className = '', color = 'green', fit, ...props }: InputFieldProps) {
   return (
     <div
-      className={`flex flex-col ${className}`}
+      className={`flex flex-col ${className} ${fit && 'w-fit'}`}
       {...props}>
-      <label
-        className={`
+      {!!label && (
+        <label
+          className={`
         text-sm font-semibold
         ${color === 'pink' && 'text-pink-dark'}
         ${color === 'yellow' && 'text-yellow-dark'}
@@ -26,8 +28,9 @@ export default function InputField({ label, type = 'text', name = '', id = '', a
         ${color === 'green' && 'text-green-dark'}
         ${color === 'purple' && 'text-purple-dark'}
       `}>
-        {label}
-      </label>
+          {label}
+        </label>
+      )}
       <input
         className={`
         py-2 px-4 border-b-4 rounded-md

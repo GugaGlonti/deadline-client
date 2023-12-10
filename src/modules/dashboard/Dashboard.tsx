@@ -54,7 +54,7 @@ const selection = [
     iteration={[1, 1]}
   />,
   <Card
-    title='AlDat AB'
+    title='AlDat AB ____ ____'
     subject='Algorithmen und Datenstrukturen'
     description='lorem ipsum dolor sit amet lorem ipsum'
     color={randomColor()}

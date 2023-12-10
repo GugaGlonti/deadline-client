@@ -1,5 +1,5 @@
 interface SelectFieldProps {
-  label: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
   className?: string;
@@ -7,12 +7,24 @@ interface SelectFieldProps {
   options?: string[];
 }
 
-export default function SelectField({ label, value, onChange, className = '', color = 'pink', options = ['Add Options'], ...props }: SelectFieldProps) {
+export default function SelectField({ label, value, onChange, className = '', color = 'green', options = ['Add Options'], ...props }: SelectFieldProps) {
   return (
     <div
       className={`flex flex-col ${className}`}
       {...props}>
-      <label className='text-sm'>{label}</label>
+      {!!label && (
+        <label
+          className={`
+          text-sm font-semibold
+          ${color === 'pink' && 'text-pink-dark'}
+          ${color === 'yellow' && 'text-yellow-dark'}
+          ${color === 'blue' && 'text-blue-dark'}
+          ${color === 'green' && 'text-green-dark'}
+          ${color === 'purple' && 'text-purple-dark'}
+        `}>
+          {label}
+        </label>
+      )}
       <select
         className={`
         py-2 px-4 border-b-4 rounded-md
