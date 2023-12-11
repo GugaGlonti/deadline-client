@@ -1,6 +1,6 @@
 interface InputFieldProps {
   label?: string;
-  type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time' | 'datetime-local' | 'month' | 'week' | 'tel' | 'url' | 'search';
+  type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time' | 'datetime-local' | 'month' | 'week' | 'tel' | 'url' | 'search' | 'checkbox' | 'radio';
   name?: string;
   autoComplete?: string;
   placeholder?: string;

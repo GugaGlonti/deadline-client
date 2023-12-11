@@ -8,7 +8,7 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const randomSelectionWithMultipliedAmount = selection
-    .map(card => Array(5).fill(card))
+    .map(card => Array(0).fill(card))
     .flat()
     .sort(() => Math.random() - 0.5);
 
