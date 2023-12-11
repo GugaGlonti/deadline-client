@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   return (
     <div className='w-full h-fill'>
-      <div className='flex flex-wrap justify-evenly'>
+      <div className='flex flex-wrap justify-evenly p-8 gap-16'>
         {deadlines!.map((deadline, index) => (
           <Card
             key={index}
