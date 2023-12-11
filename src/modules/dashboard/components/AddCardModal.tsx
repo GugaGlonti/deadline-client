@@ -24,8 +24,8 @@ export default function AddCardModal({ open, onClose, className, ...props }: Add
   const [subject, setSubject] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [occurrences, setOccurences] = useState<string>('');
-  const [time, setTime] = useState<string>();
-  const [date, setDate] = useState<string>();
+  const [time, setTime] = useState<string>('');
+  const [date, setDate] = useState<string>('');
 
   const { setDeadlines } = useSetDeadlines();
 
