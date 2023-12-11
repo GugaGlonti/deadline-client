@@ -4,52 +4,70 @@ import { RxCross2 } from 'react-icons/rx';
 
 import InputField from '../../../components/InputField';
 import Button from '../../../components/Button';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { Deadline } from '../../../types/Deadline';
+import { auth, db } from '../../../config/firebase.config';
 
 interface AddCardModalProps {
   className?: string;
   open?: boolean;
   onClose: () => void;
+  onUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface Data {
-  title?: string;
-  subject?: string;
-  time?: string;
-  date?: string;
-  description?: string;
-  singleOccurence?: string;
-}
+export default function AddCardModal({ open, onClose, className, onUpdate, ...props }: AddCardModalProps) {
+  const [singleOccurrence, setSingleOccurrence] = useState(true);
 
-export default function AddCardModal({ open, onClose, className, ...props }: AddCardModalProps) {
-  const [data, setData] = useState<Data>({});
-  const [singleOccurence, setSingleOccurence] = useState(true);
+  const [title, setTitle] = useState<string>('');
+  const [subject, setSubject] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [occurrences, setOccurences] = useState<string>('');
+  const [time, setTime] = useState<string>();
+  const [date, setDate] = useState<string>();
 
   if (!open) return null;
+
+  function clearData() {
+    setSingleOccurrence(true);
+    setTitle('');
+    setSubject('');
+    setDescription('');
+    setOccurences('');
+    setTime('');
+    setDate('');
+  }
 
   type Click = React.MouseEvent<HTMLDivElement, MouseEvent>;
   const outsideClickCloseModal = (e: Click) => e.target === e.currentTarget && closeModal();
   const foreCloseModal = () => closeModal();
 
   function closeModal() {
+    clearData();
     onClose();
-    setData({});
-    setSingleOccurence(true);
   }
 
-  function submitHandler() {
-    const result = { ...data, singleOccurence: singleOccurence ? 'true' : 'false' };
-    console.table(result);
-    onClose();
-    setData({});
-    setSingleOccurence(true);
-  }
+  async function submitHandler() {
+    const doc: Deadline = {
+      userId: auth.currentUser!.uid,
+      title,
+      subject,
+      description,
+      date: Timestamp.fromDate(new Date(`${date} ${time}`)),
+      singleOccurrence,
+      occurrences: singleOccurrence ? 1 : Number(occurrences),
+    };
 
-  const setTitle = (title: string) => setData(prev => ({ ...prev, title }));
-  const setSubject = (subject: string) => setData(prev => ({ ...prev, subject }));
-  const setTime = (time: string) => setData(prev => ({ ...prev, time }));
-  const setDescription = (description: string) => setData(prev => ({ ...prev, description }));
-  const setOccurences = (occurences: string) => setData(prev => ({ ...prev, occurences }));
-  const setDate = (date: string) => setData(prev => ({ ...prev, date }));
+    console.log('deadline: ', doc);
+
+    try {
+      await addDoc(collection(db, 'deadlines'), doc);
+      onUpdate(prev => !prev);
+      clearData();
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -100,7 +118,7 @@ export default function AddCardModal({ open, onClose, className, ...props }: Add
               </div>
 
               <div className='flex justify-between gap-8 flex-col lg:flex-row'>
-                {!singleOccurence ? (
+                {!singleOccurrence ? (
                   <InputField
                     type='number'
                     placeholder='Occurences'
@@ -113,8 +131,8 @@ export default function AddCardModal({ open, onClose, className, ...props }: Add
                   <input
                     type='checkbox'
                     className='w-6 h-6 accent-green-dark m-6'
-                    checked={singleOccurence}
-                    onChange={() => setSingleOccurence(prev => !prev)}
+                    checked={singleOccurrence}
+                    onChange={() => setSingleOccurrence(prev => !prev)}
                   />
                   <h1 className='text-gray-400'>One Time</h1>
                 </div>
