@@ -35,8 +35,8 @@ export default function ProfilePicture({ src, alt, className = '', size = 'md', 
       ${size === 'xl' && 'w-32 h-32'}
       rounded-full
       `}
-      src={src}
       alt={alt}
+      src={src}
       {...props}
     />
   );
