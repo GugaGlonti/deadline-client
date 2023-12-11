@@ -2,20 +2,22 @@ import { useState } from 'react';
 
 import { RxCross2 } from 'react-icons/rx';
 
+import { Deadline } from '../../../types/Deadline';
+import { Timestamp } from 'firebase/firestore';
+import { auth } from '../../../config/firebase.config';
+
+import useSetDeadlines from '../hooks/useSetDeadlines';
+
 import InputField from '../../../components/InputField';
 import Button from '../../../components/Button';
-import { Timestamp, addDoc, collection } from 'firebase/firestore';
-import { Deadline } from '../../../types/Deadline';
-import { auth, db } from '../../../config/firebase.config';
 
 interface AddCardModalProps {
   className?: string;
   open?: boolean;
   onClose: () => void;
-  onUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function AddCardModal({ open, onClose, className, onUpdate, ...props }: AddCardModalProps) {
+export default function AddCardModal({ open, onClose, className, ...props }: AddCardModalProps) {
   const [singleOccurrence, setSingleOccurrence] = useState(true);
 
   const [title, setTitle] = useState<string>('');
@@ -25,16 +27,14 @@ export default function AddCardModal({ open, onClose, className, onUpdate, ...pr
   const [time, setTime] = useState<string>();
   const [date, setDate] = useState<string>();
 
+  const { setDeadlines } = useSetDeadlines();
+
   if (!open) return null;
 
+  // prettier-ignore
   function clearData() {
-    setSingleOccurrence(true);
-    setTitle('');
-    setSubject('');
-    setDescription('');
-    setOccurences('');
-    setTime('');
-    setDate('');
+    setTitle('');   setSubject(''); setDescription('');   setOccurences('');
+    setTime('');    setDate('');    setSingleOccurrence(true);
   }
 
   type Click = React.MouseEvent<HTMLDivElement, MouseEvent>;
@@ -57,16 +57,8 @@ export default function AddCardModal({ open, onClose, className, onUpdate, ...pr
       occurrences: singleOccurrence ? 1 : Number(occurrences),
     };
 
-    console.log('deadline: ', doc);
-
-    try {
-      await addDoc(collection(db, 'deadlines'), doc);
-      onUpdate(prev => !prev);
-      clearData();
-      onClose();
-    } catch (error) {
-      console.error(error);
-    }
+    await setDeadlines(doc);
+    closeModal();
   }
 
   return (

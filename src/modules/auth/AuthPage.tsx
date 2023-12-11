@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthService } from '../../services/auth.service';
 
-import useQuery from '../../hooks/useQuery';
+import useQueryParam from '../../hooks/useQuery';
 
 import DEADLINE from '../../components/DEADLINE';
 import Button from '../../components/Button';
@@ -14,7 +14,7 @@ export default function AuthPage() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
 
-  const isSignup = useQuery('method') === 'signup' || false;
+  const isSignup = useQueryParam('method') === 'signup' || false;
   const navigate = useNavigate();
 
   async function handleSignin() {
