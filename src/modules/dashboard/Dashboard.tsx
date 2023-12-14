@@ -14,7 +14,7 @@ export default function Dashboard() {
   const { deadlines, isLoading } = useDeadlines();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className='w-full h-fill flex items-center justify-center'>Loading...</div>;
   }
 
   return (
