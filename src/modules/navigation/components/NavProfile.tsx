@@ -18,9 +18,7 @@ export default function NavProfile({ user, onLogout: logout, ...props }: NavProf
 
   return (
     <div
-      className={`relative
-      bg-gray-800 py-1 px-4 rounded-md
-      hover:bg-gray-700`}
+      className={`relative bg-gray-800 py-1 px-4 rounded-md hover:bg-gray-700`}
       onClick={toggleDropdown}
       onMouseLeave={closeDropdown}
       {...props}>

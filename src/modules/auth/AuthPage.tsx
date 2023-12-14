@@ -41,12 +41,7 @@ export default function AuthPage() {
     <>
       <div className='flex flex-col items-center justify-center w-full h-screen'>
         <DEADLINE className='text-white mb-16' />
-        <h1
-          className='
-          text-green-dark
-          text-4xl'>
-          {isSignup ? 'Sign Up' : 'Sign In'}
-        </h1>
+        <h1 className='text-green-dark text-4xl'>{isSignup ? 'Sign Up' : 'Sign In'}</h1>
         <div
           className='
           bg-white
