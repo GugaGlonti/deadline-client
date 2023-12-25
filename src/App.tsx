@@ -1,15 +1,15 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-
-import { routes } from './routes';
-
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+import useAuthBasedRoutes from './hooks/useAuthBasedRoutes';
 
 const queryClient = new QueryClient();
 
 export default function App() {
+  const Routes = useAuthBasedRoutes();
+
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={createBrowserRouter(routes)} />
+      <Routes />
     </QueryClientProvider>
   );
 }

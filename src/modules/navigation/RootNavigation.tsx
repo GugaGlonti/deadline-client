@@ -10,7 +10,6 @@ export default function RootNavigation() {
 
   function handleLogout() {
     AuthService.logout();
-    window.location.reload();
   }
 
   return (
