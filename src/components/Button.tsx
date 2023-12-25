@@ -20,9 +20,7 @@ export default function Button({ text, onClick, color = 'green', className = '',
 
   return (
     <button
-      className={`py-2 px-4 border-b-4 rounded-md align-middle
-      ${colors[color]}
-      ${className}`}
+      className={`py-2 px-4 border-b-4 rounded-md align-middle ${colors[color]} ${className}`}
       onClick={onClick}
       {...props}>
       {text}

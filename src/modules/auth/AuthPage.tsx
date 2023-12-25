@@ -8,6 +8,7 @@ import useQueryParam from '../../hooks/useQuery';
 import DEADLINE from '../../components/DEADLINE';
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
+import SignInWithButton from './components/SignInWithButton';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('');
@@ -127,15 +128,15 @@ export default function AuthPage() {
         <h1 className='text-green-dark my-8'>OR</h1>
 
         <div className='flex gap-4'>
-          <Button
-            color='green'
-            text='Login with Google'
+          <SignInWithButton
+            provider='Google'
             onClick={handleGoogleSignin}
+            src='https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg'
           />
-          <Button
-            color='green'
-            text='Login with Github'
+          <SignInWithButton
+            provider='Github'
             onClick={handleGithubSignin}
+            src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg'
           />
         </div>
       </div>
