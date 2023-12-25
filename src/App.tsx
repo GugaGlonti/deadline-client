@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import useAuthBasedRoutes from './hooks/useAuthBasedRoutes';
 import { auth } from './config/firebase.config';
+
+import useAuthBasedRoutes from './hooks/useAuthBasedRoutes';
 
 const queryClient = new QueryClient();
 
