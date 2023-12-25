@@ -10,14 +10,18 @@ interface ButtonProps {
 }
 
 export default function Button({ text, onClick, color = 'green', className = '', children, ...props }: ButtonProps) {
+  const colors = {
+    pink: 'bg-pink hover:bg-pink-dark border-pink-dark',
+    yellow: 'bg-yellow hover:bg-yellow-dark border-yellow-dark',
+    blue: 'bg-blue hover:bg-blue-dark border-blue-dark',
+    green: 'bg-green hover:bg-green-dark border-green-dark',
+    purple: 'bg-purple hover:bg-purple-dark border-purple-dark',
+  };
+
   return (
     <button
       className={`py-2 px-4 border-b-4 rounded-md align-middle
-      ${color === 'pink' && 'bg-pink hover:bg-pink-dark border-pink-dark'}
-      ${color === 'yellow' && 'bg-yellow hover:bg-yellow-dark border-yellow-dark'}
-      ${color === 'blue' && 'bg-blue hover:bg-blue-dark border-blue-dark'}
-      ${color === 'green' && 'bg-green hover:bg-green-dark border-green-dark'}
-      ${color === 'purple' && 'bg-purple hover:bg-purple-dark border-purple-dark'}
+      ${colors[color]}
       ${className}`}
       onClick={onClick}
       {...props}>
