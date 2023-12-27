@@ -17,12 +17,7 @@ export default function DashboardNav() {
       ${isMenuOpen ? 'w-1/4' : 'w-24'}
       `}>
       <div onClick={() => setIsMenuOpen(prev => !prev)}>
-        <IoMenu
-          className={`
-          m-2
-          p-6 w-20 h-20
-          `}
-        />
+        <IoMenu className={`m-2 p-6 w-20 h-20`} />
       </div>
 
       <nav className='flex flex-col gap-16 mt-16'>
