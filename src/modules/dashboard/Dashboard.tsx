@@ -5,6 +5,7 @@ import useDeadlines from './hooks/useDeadlines';
 import AddCard from './components/AddCard';
 import AddCardModal from './components/AddCardModal';
 import Alert from '../../components/Alert';
+
 import { Deadlines } from './components/Deadlines';
 
 export default function Dashboard() {
@@ -20,12 +21,11 @@ export default function Dashboard() {
 
   return (
     <div className='w-full h-fill'>
-      {!deadlines?.length && (
-        <Alert
-          text='You have no deadlines'
-          className='mt-16'
-        />
-      )}
+      <Alert
+        when={!deadlines?.length}
+        text='You have no deadlines'
+        className='mt-16'
+      />
       <Deadlines deadlines={deadlines!} />
       <AddCardModal
         open={isModalOpen}

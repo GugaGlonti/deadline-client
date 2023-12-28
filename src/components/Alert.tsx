@@ -7,12 +7,13 @@ interface AlertProps {
   text: string;
   type?: 'success' | 'error' | 'warning' | 'info';
   className?: string;
+  when?: boolean;
 }
 
-export default function Alert({ className = '', text, type = 'error', ...props }: AlertProps) {
+export default function Alert({ className = '', when = false, text, type = 'error', ...props }: AlertProps) {
   const [hidden, setHidden] = useState(false);
 
-  if (hidden) return null;
+  if (hidden || !when) return null;
 
   function closeAlert() {
     setHidden(true);
