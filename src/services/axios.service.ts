@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { env } from '../common/helpers';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
-  timeout: 10000,
+  baseURL: env('API_URL'),
+  timeout: env('API_TIMEOUT'),
   timeoutErrorMessage: 'Request timed out',
 });
 
