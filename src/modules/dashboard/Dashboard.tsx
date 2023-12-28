@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 import useDeadlines from './hooks/useDeadlines';
 
-import Card from '../cards/Card';
 import AddCard from './components/AddCard';
 import AddCardModal from './components/AddCardModal';
+import Alert from '../../components/Alert';
+import { Deadlines } from './components/Deadlines';
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,21 +18,18 @@ export default function Dashboard() {
     return <div className='w-full h-fill flex items-center justify-center'>Loading...</div>;
   }
 
+  if (!deadlines?.length) {
+    return (
+      <Alert
+        text='You have no deadlines'
+        className='mt-16'
+      />
+    );
+  }
+
   return (
     <div className='w-full h-fill'>
-      <div className='flex flex-wrap justify-evenly p-8 gap-16'>
-        {deadlines!.map((deadline, index) => (
-          <Card
-            key={index}
-            title={deadline.title}
-            subject={deadline.subject || 'No subject'}
-            description={deadline.description}
-            color={'red'}
-            iteration={[0, 0]}
-            priority={0}
-          />
-        ))}
-      </div>
+      <Deadlines deadlines={deadlines} />
       <AddCardModal
         open={isModalOpen}
         onClose={onClose}
