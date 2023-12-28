@@ -18,18 +18,15 @@ export default function Dashboard() {
     return <div className='w-full h-fill flex items-center justify-center'>Loading...</div>;
   }
 
-  if (!deadlines?.length) {
-    return (
-      <Alert
-        text='You have no deadlines'
-        className='mt-16'
-      />
-    );
-  }
-
   return (
     <div className='w-full h-fill'>
-      <Deadlines deadlines={deadlines} />
+      {!deadlines?.length && (
+        <Alert
+          text='You have no deadlines'
+          className='mt-16'
+        />
+      )}
+      <Deadlines deadlines={deadlines!} />
       <AddCardModal
         open={isModalOpen}
         onClose={onClose}
