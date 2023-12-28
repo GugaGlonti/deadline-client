@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { FirestoreService } from '../../../services/firestore.service';
+import { DeadlineService } from '../../../services/deadline.service';
 
 export default function useSetDeadlines() {
   const queryClient = useQueryClient();
 
-  const { mutateAsync } = useMutation(FirestoreService.addDeadline, { onSuccess: () => queryClient.invalidateQueries('deadlines') });
+  const { mutateAsync } = useMutation(DeadlineService.addDeadline, {
+    onSuccess: () => queryClient.invalidateQueries('deadlines'),
+  });
 
   return { setDeadlines: mutateAsync };
 }

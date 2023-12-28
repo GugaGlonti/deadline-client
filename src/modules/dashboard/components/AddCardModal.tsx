@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 import { RxCross2 } from 'react-icons/rx';
 
-import { Deadline } from '../../../types/Deadline';
-import { Timestamp } from 'firebase/firestore';
 import { auth } from '../../../config/firebase.config';
 
 import useSetDeadlines from '../hooks/useSetDeadlines';
@@ -52,7 +50,7 @@ export default function AddCardModal({ open, onClose, className, ...props }: Add
       title,
       subject,
       description,
-      date: Timestamp.fromDate(new Date(`${date} ${time}`)),
+      date: new Date(`${date} ${time}`),
       singleOccurrence,
       occurrences: singleOccurrence ? 1 : Number(occurrences),
     };

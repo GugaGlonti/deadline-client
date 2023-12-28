@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 
-import { FirestoreService } from '../../../services/firestore.service';
+import { DeadlineService } from '../../../services/deadline.service';
 
 export default function useDeadlines() {
-  const { data, isLoading } = useQuery(['deadlines'], FirestoreService.getDeadlines);
-  return { deadlines: data, isLoading };
+  const { data, isLoading, isError } = useQuery(['deadlines'], DeadlineService.getDeadlines);
+  return { deadlines: data, isLoading, isError };
 }

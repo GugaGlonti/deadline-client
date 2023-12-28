@@ -1,10 +1,8 @@
-import { Timestamp } from 'firebase/firestore';
-
 interface Deadline {
   userId: string;
   title: string;
 
-  date: Timestamp;
+  date: Date;
 
   singleOccurrence: boolean;
   occurrences?: number;
