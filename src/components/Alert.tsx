@@ -4,10 +4,10 @@ import { FaInfoCircle } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 
 interface AlertProps {
+  when: boolean;
   text: string;
   type?: 'success' | 'error' | 'warning' | 'info';
   className?: string;
-  when?: boolean;
 }
 
 export default function Alert({ className = '', when = false, text, type = 'error', ...props }: AlertProps) {
